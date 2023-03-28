@@ -16,21 +16,41 @@ const Shop = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
-   
-    useEffect(()=>{
-        const showCardData = getShoppingCart()
-        console.log(showCardData)
-    },[])
+
+    useEffect(() => {
+        const storedCard = getShoppingCart()
+        const saveCard = [];
+        // Step 1 get id --------------------------------
+        for (const id in storedCard) {
+
+            // Step 2 get the product using id-----------
+            const addedProduct = products.find(product => product.id === id)
+
+            if (addedProduct) {
+                // Step 3 added quantity
+                const quantity = storedCard[id];
+                addedProduct.quantity = quantity; 
+                // Step add the added product to the save card
+                saveCard.push(addedProduct);
+            }
+            
+            console.log(addedProduct)
+        }
+        // Step 5 set the card
+        setCard(saveCard)
+
+
+    }, [products])
 
     const handleAddToCard = (product) => {
-        // console.log(product)
+
 
         let newCard = [...card, product];
         setCard(newCard)
         addToDb(product.id)
 
     }
-   
+
     return (
         <div>
             <div className='shop-container'>
@@ -50,7 +70,7 @@ const Shop = () => {
 
 
                 <div>
-                   <Card card={card}></Card>
+                    <Card card={card}></Card>
 
                 </div>
 
