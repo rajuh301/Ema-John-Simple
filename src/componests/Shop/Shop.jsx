@@ -34,7 +34,7 @@ const Shop = () => {
                 saveCard.push(addedProduct);
             }
             
-            console.log(addedProduct)
+            // console.log(addedProduct)
         }
         // Step 5 set the card
         setCard(saveCard)

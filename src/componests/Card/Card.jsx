@@ -7,7 +7,7 @@ const Card = (props) => {
     // const card = props.card;
 
     const { card } = props;
-    console.log(card)
+    // console.log(card)
 
     let total = 0;
     let totalShipping = 0;
