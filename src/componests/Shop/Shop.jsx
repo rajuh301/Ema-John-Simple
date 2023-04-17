@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getShoppingCart } from '../../utilities/fakedb';
+import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fakedb';
 import Card from '../Card/Card';
 import Product from '../Product/Product';
 import './Shop.css'
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
 
@@ -29,11 +30,11 @@ const Shop = () => {
             if (addedProduct) {
                 // Step 3 added quantity
                 const quantity = storedCard[id];
-                addedProduct.quantity = quantity; 
+                addedProduct.quantity = quantity;
                 // Step add the added product to the save card
                 saveCard.push(addedProduct);
             }
-            
+
             // console.log(addedProduct)
         }
         // Step 5 set the card
@@ -50,6 +51,13 @@ const Shop = () => {
         addToDb(product.id)
 
     }
+
+    const handelClearCard = () => {
+        setCard([]);
+        deleteShoppingCart()
+
+    }
+
 
     return (
         <div>
@@ -70,7 +78,15 @@ const Shop = () => {
 
 
                 <div>
-                    <Card card={card}></Card>
+                    <Card 
+                    card={card}
+                    handelClearCard={handelClearCard }
+                    >
+                      <Link to='/orders'>
+                      <button className='btn-proceed'>Review Order</button>
+                      </Link>
+
+                    </Card>
 
                 </div>
 

@@ -19,3 +19,12 @@
     color: orange;
 
 }
+
+.text-white{
+    color: white;
+    padding-left: 25px;
+}
+
+.text-white button{
+    margin-left: 25px;
+}
